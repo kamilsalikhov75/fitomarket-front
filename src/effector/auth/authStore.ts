@@ -42,7 +42,7 @@ export const register = createEffect(
       (jwtDecode(responseData.token).exp as number) * 1000
     );
 
-    Cookies.set("access_token", responseData.token, {
+    Cookies.set("token", responseData.token, {
       expires: tokenExpires,
     });
   }
