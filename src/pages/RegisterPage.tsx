@@ -1,4 +1,4 @@
-import { Button, Input } from "@nextui-org/react";
+import { Button, Checkbox, Input } from "@nextui-org/react";
 import { Link } from "../components/Link";
 import { useState } from "react";
 import { register } from "../effector/auth/authStore";
@@ -7,6 +7,7 @@ export const RegisterPage = () => {
   const [name, setName] = useState<string>();
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const [agreement, setAgreement] = useState<boolean>();
 
   return (
     <form
@@ -36,9 +37,16 @@ export const RegisterPage = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Пароль"
       />
+      <Checkbox
+        color="secondary"
+        isSelected={agreement}
+        onValueChange={setAgreement}
+      >
+        Согласен с обработкой персональных данных
+      </Checkbox>
       <Button
         type="submit"
-        disabled={!name || !email || !password}
+        disabled={!name || !email || !password || !agreement}
         className="w-full disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:opacity-25"
         color="secondary"
       >
